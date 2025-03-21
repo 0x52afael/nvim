@@ -4,7 +4,7 @@
 
 ---@type ChadrcConfig
 local M = {}
--- local ascii = require("ascii")
+local ascii = require "ascii"
 M.base46 = {
   theme = "onedark",
 
@@ -16,10 +16,7 @@ M.base46 = {
 
 M.nvdash = {
   load_on_startup = true,
-  -- header = {
-  --   -- ascii.get_random_global() or "",
-  -- }
+  header = ascii.get_random_global(),
 }
-
 
 return M
