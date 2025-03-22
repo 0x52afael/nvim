@@ -14,6 +14,7 @@ return {
       "javascript",
       "html",
       "css",
+      "tsx",
     },
   },
 }

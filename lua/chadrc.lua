@@ -6,7 +6,7 @@
 local M = {}
 local ascii = require "ascii"
 M.base46 = {
-  theme = "onedark",
+  theme = "catppuccin",
 
   -- hl_override = {
   -- 	Comment = { italic = true },

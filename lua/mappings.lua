@@ -29,7 +29,8 @@ map("n", "<leader>gw", ":Gwrite<CR>", { desc = "Stage current file" })
 -- map("n", "<leader>gX", ":Gdelete<CR>", { desc = "Remove file from Git" })
 map("n", "<leader>go", ":GBrowse<CR>", { desc = "Open in browser" })
 map("n", "<leader>gH", ":Git log --oneline --graph --decorate<CR>", { desc = "Git log graph" })
-
+map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 local actions = require "telescope.actions"
 require("telescope").setup {
   defaults = {
