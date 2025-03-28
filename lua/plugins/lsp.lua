@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require "configs.lspconfig"
+      require "nvim-lspconfig"
     end,
   },
   {
@@ -13,7 +13,6 @@ return {
       mason_lspconfig.setup {
         ensure_installed = {
           "html",
-          "cssls",
           "biome",
           "tailwindcss",
           "lua_ls",

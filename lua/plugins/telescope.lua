@@ -7,6 +7,10 @@ return {
     end,
   },
   {
+    "fdschmidt93/telescope-egrepify.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     dependencies = { "nvim-telescope/telescope-project.nvim" }, -- Ensure project extension is installed
     config = function()
@@ -16,6 +20,7 @@ return {
         },
       }
       require("telescope").load_extension "projects"
+      require("telescope").load_extension "egrepify"
     end,
   },
 }

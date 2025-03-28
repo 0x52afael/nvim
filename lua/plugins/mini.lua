@@ -1,7 +1,7 @@
 --- @type NvPluginSpec
 return {
   "echasnovski/mini.nvim",
-  version = "*",
+  version = false,
   event = "VeryLazy",
 
   config = function()
@@ -12,7 +12,6 @@ return {
     require("mini.files").setup()
     require("mini.bracketed").setup()
     require("mini.animate").setup()
-    require("mini.git").setup()
     require("mini.visits").setup()
     require("mini.extra").setup()
     require("mini.clue").setup()

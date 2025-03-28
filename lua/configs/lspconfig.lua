@@ -10,7 +10,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local lspconfig = require "lspconfig"
 local util = require "lspconfig.util"
 
-local servers = { "css-lsp", "biome", "tailwindcss", "cssmodules_ls", "css_variables" }
+local servers = { "cssls", "biome", "tailwindcss", "cssmodules_ls", "css_variables", "ts_ls" }
 local nvlsp = require "nvchad.configs.lspconfig"
 
 local function on_attach(client, bufnr)
@@ -26,15 +26,21 @@ for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = nvlsp.on_attach,
     on_init = nvlsp.on_init,
-    capabilities = capabilities,
-    filetypes = { "html", "css", "javascript", "javascriptreact", "typescript", "typescriptreact" },
+    capabilities = vim.tbl_deep_extend("force", {}, capabilities, {}),
+    filetypes = { "html", "css", "scss", "less", "javascript", "javascriptreact", "typescript", "typescriptreact" },
   }
 end
+
+lspconfig.cssls.setup {
+  on_init = on_init,
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
 lspconfig.html.setup {
   on_init = on_init,
   on_attach = on_attach,
-  capabilities = configs.capabilities,
+  capabilities = capabilities,
   filetypes = { "html", "templ", "javascriptreact", "typescriptreact" },
   settings = {
     html = {

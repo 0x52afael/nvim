@@ -1,7 +1,8 @@
 require "nvchad.mappings"
 
 -- add yours here
-
+vim.g.user_emmet_leader_key = ","
+vim.g.user_emmet_mode = "a"
 vim.o.relativenumber = true
 vim.o.number = true
 vim.o.smartcase = true
@@ -24,11 +25,11 @@ map("n", "<leader>gP", ":Git push<CR>", { desc = "Git push" })
 map("n", "<leader>gl", ":Git pull<CR>", { desc = "Git pull" })
 map("n", "<leader>gB", ":Git blame<CR>", { desc = "Git blame" })
 map("n", "<leader>gal", ":Git add ", { desc = "Git add all modified files" })
-map("n", "<leader>grs", ":Gread<CR>", { desc = "Reset file to last commit" })
-map("n", "<leader>gw", ":Gwrite<CR>", { desc = "Stage current file" })
--- map("n", "<leader>gX", ":Gdelete<CR>", { desc = "Remove file from Git" })
-map("n", "<leader>go", ":GBrowse<CR>", { desc = "Open in browser" })
+map("n", "<leader>grs", ":G read<CR>", { desc = "Reset file to last commit" })
+map("n", "<leader>gw", ":G write<CR>", { desc = "Stage current file" })
+map("n", "<leader>go", ":G Browse<CR>", { desc = "Open in browser" })
 map("n", "<leader>gH", ":Git log --oneline --graph --decorate<CR>", { desc = "Git log graph" })
+map("n", "<leader>on", ":lua require('mini.notify').show_history()<CR>", { desc = "Open Notification History" })
 map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
 map("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
 local actions = require "telescope.actions"
@@ -41,3 +42,6 @@ require("telescope").setup {
     },
   },
 }
+
+map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-forward)")
+map({ "n", "x", "o" }, "<leader>S", "<Plug>(leap-backward)")

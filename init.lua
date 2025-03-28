@@ -35,3 +35,19 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+vim.notify = require("mini.notify").make_notify {
+  ERROR = { duration = 4000 },
+  WARN = { duration = 3000 },
+  INFO = { duration = 2000 },
+}
+vim.diagnostic.config {
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "✘",
+      [vim.diagnostic.severity.WARN] = "▲",
+      [vim.diagnostic.severity.HINT] = "⚑",
+      [vim.diagnostic.severity.INFO] = "»",
+    },
+  },
+}
