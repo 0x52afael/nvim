@@ -51,3 +51,5 @@ vim.diagnostic.config {
     },
   },
 }
+
+require "lsp-setup"

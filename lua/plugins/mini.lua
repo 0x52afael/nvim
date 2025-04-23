@@ -1,11 +1,9 @@
---- @type NvPluginSpec
 return {
   "echasnovski/mini.nvim",
   version = false,
   event = "VeryLazy",
 
   config = function()
-    require("mini.surround").setup()
     require("mini.ai").setup()
     require("mini.pairs").setup()
     require("mini.operators").setup()
@@ -16,5 +14,6 @@ return {
     require("mini.extra").setup()
     require("mini.clue").setup()
     require("mini.indentscope").setup()
+    require("mini.surround").setup()
   end,
 }

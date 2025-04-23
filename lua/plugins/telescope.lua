@@ -8,7 +8,13 @@ return {
   },
   {
     "fdschmidt93/telescope-egrepify.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim",
+    },
+  },
+  {
+    "nvim-telescope/telescope-ui-select.nvim",
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -21,6 +27,7 @@ return {
       }
       require("telescope").load_extension "projects"
       require("telescope").load_extension "egrepify"
+      require("telescope").load_extension "ui-select"
     end,
   },
 }

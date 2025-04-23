@@ -13,22 +13,12 @@ map("i", "jk", "<ESC>")
 map("n", "<leader>fw", ":Telescope egrepify<CR>", { desc = "Find words (Egrepify)" })
 map("n", "<leader>sk", ":Telescope keymaps<CR>", { desc = "Telescope find all keymaps" })
 map("n", "<leader>fp", ":Telescope projects<CR>", { desc = "Telescope list previous projects" })
-map("n", "<M-j>", "<cmd>cnext<CR>")
-map("n", "<M-k>", "<cmd>cprev<CR>")
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 map("n", "<leader>gq", ":q<CR>", { desc = "Close Git window" })
 map("n", "<leader>gs", ":Neogit<CR>", { desc = "Open Neogit" })
 map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns preview hunk changes" })
 
 map("n", "<leader>gc", ":Git commit<CR>", { desc = "Git commit" })
--- map("n", "<leader>gP", ":Git push<CR>", { desc = "Git push" })
--- map("n", "<leader>gl", ":Git pull<CR>", { desc = "Git pull" })
--- map("n", "<leader>gB", ":Git blame<CR>", { desc = "Git blame" })
--- map("n", "<leader>gal", ":Git add ", { desc = "Git add all modified files" })
--- map("n", "<leader>grs", ":G read<CR>", { desc = "Reset file to last commit" })
--- map("n", "<leader>gw", ":G write<CR>", { desc = "Stage current file" })
--- map("n", "<leader>go", ":G Browse<CR>", { desc = "Open in browser" })
 map("n", "<leader>gH", ":Git log --oneline --graph --decorate<CR>", { desc = "Git log graph" })
 map("n", "<leader>on", ":lua require('mini.notify').show_history()<CR>", { desc = "Open Notification History" })
 -- map("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
@@ -44,5 +34,24 @@ require("telescope").setup {
   },
 }
 
-map({ "n", "x", "o" }, "<leader>s", "<Plug>(leap-forward)")
-map({ "n", "x", "o" }, "<leader>S", "<Plug>(leap-backward)")
+map({ "n", "x", "o" }, "f", "<Plug>(leap-forward)")
+map({ "n", "x", "o" }, "F", "<Plug>(leap-backward)")
+map("n", "<M-j>", function()
+  if vim.fn.getloclist(0, { size = 0 }).size > 0 then
+    vim.cmd "lnext"
+  elseif vim.fn.getqflist({ size = 0 }).size > 0 then
+    vim.cmd "cnext"
+  end
+end, { noremap = true, silent = true })
+
+map("n", "<M-k>", function()
+  if vim.fn.getloclist(0, { size = 0 }).size > 0 then
+    vim.cmd "lprev"
+  elseif vim.fn.getqflist({ size = 0 }).size > 0 then
+    vim.cmd "cprev"
+  end
+end, { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>ih", function()
+  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end, { desc = "Toggle Inlay Hints" })
