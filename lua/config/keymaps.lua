@@ -109,10 +109,13 @@ local diagnostic_goto = function(next, severity)
     go({ severity = severity })
   end
 end
-
+map("t", "<C-n>", [[<C-\><C-n>]], { noremap = true, silent = true })
 map("n", "<leader>nd", diagnostic_goto(true), { desc = "Next Diagnostic" })
 map("n", "<leader>pd", diagnostic_goto(false), { desc = "Prev Diagnostic" })
 map("n", "<leader>ne", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
 map("n", "<leader>pe", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
 map("n", "<leader>nw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
 map("n", "<leader>pw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+map("n", "<leader>pw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+map("n", "<leader>fp", ":lua require('fzf-lua').projects()<CR>", { desc = "Find Projects with fzf-lua" })
+map("n", "<leader>fo", "<cmd>FzfLua oldfiles<cr>", { noremap = true, silent = true, desc = "Find Recent Files" })

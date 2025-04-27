@@ -6,7 +6,6 @@ return {
     { "<leader>/", false },
     { "<leader>r", false },
     { "<leader>fr", false },
-    { "<leader>fo", "<cmd>Telescope oldfiles<cr>", desc = "Find Recent" },
     { "<leader><leader>", false },
     -- change a keymap
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },

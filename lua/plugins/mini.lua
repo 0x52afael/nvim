@@ -13,6 +13,12 @@ return {
       scroll = {
         enable = false,
       },
+      open = {
+        enable = false,
+      },
+      close = {
+        enable = false,
+      },
     })
     require("mini.visits").setup()
     require("mini.extra").setup()
