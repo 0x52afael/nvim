@@ -9,7 +9,11 @@ return {
     require("mini.operators").setup()
     require("mini.files").setup()
     require("mini.bracketed").setup()
-    require("mini.animate").setup()
+    require("mini.animate").setup({
+      scroll = {
+        enable = false,
+      },
+    })
     require("mini.visits").setup()
     require("mini.extra").setup()
     require("mini.clue").setup()

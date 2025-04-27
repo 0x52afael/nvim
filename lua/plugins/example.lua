@@ -1,6 +1,16 @@
 return {
   -- add gruvbox
   { "ellisonleao/gruvbox.nvim" },
+  {
+    "folke/tokyonight.nvim",
+    opts = {
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
+    },
+  },
 
   -- change trouble config
   {
@@ -19,6 +29,8 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        unocss = {},
+        biome = {},
       },
     },
   },

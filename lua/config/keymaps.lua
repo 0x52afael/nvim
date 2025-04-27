@@ -1,7 +1,3 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
 vim.g.user_emmet_leader_key = ","
 vim.g.user_emmet_mode = "a"
 vim.o.relativenumber = true
@@ -99,3 +95,24 @@ map("n", "<C-n>", function()
 end, { desc = "Open NerdTree" })
 
 map("n", "<leader>x", ":bdelete<cr>", { desc = "Close Tab" })
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+-- diagnostic
+local diagnostic_goto = function(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
+end
+
+map("n", "<leader>nd", diagnostic_goto(true), { desc = "Next Diagnostic" })
+map("n", "<leader>pd", diagnostic_goto(false), { desc = "Prev Diagnostic" })
+map("n", "<leader>ne", diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+map("n", "<leader>pe", diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+map("n", "<leader>nw", diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+map("n", "<leader>pw", diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
