@@ -1,11 +1,8 @@
-# 💤 LazyVim
+# Hello! 
+- The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
+- So you just import its modules , like `require "nvchad.options" , require "nvchad.mappings"`
+- So you can delete the .git from this repo ( when you clone it locally ) or fork it :)
 
-git clone url ~/.config/nvim
+# Credits
 
-## Setting
-
-Start Neovim to download all plugins with lazy, then close and reopen
-Run :MasonInstallAll, and :Mason to hand pick which LSPs linters and so on you want
-
-A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
-Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
+1) Lazyvim starter https://github.com/LazyVim/starter as nvchad's starter was inspired by Lazyvim's . It made a lot of things easier!

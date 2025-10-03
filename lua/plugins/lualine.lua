@@ -1,16 +1,19 @@
 return {
+    -- +-------------------------------------------------+
+    -- | A | B | C                             X | Y | Z |
+    -- +-------------------------------------------------+
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
-
   config = function()
     local function macro_recording()
       local reg = vim.fn.reg_recording()
       if reg ~= "" then
-        return "🎥  Recording @" .. reg
+        return " Rec @" .. reg -- Using a video camera icon
       end
       return ""
     end
+
     local colors = {
       red = "#ca1243",
       grey = "#a0a1a7",
@@ -52,11 +55,11 @@ return {
       if vim.v.hlsearch == 0 then
         return ""
       end
-      local last_search = vim.fn.getreg("/")
+      local last_search = vim.fn.getreg "/"
       if not last_search or last_search == "" then
         return ""
       end
-      local searchcount = vim.fn.searchcount({ maxcount = 9999 })
+      local searchcount = vim.fn.searchcount { maxcount = 9999 }
       return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
     end
 
@@ -69,13 +72,13 @@ return {
       return ""
     end
 
-    require("lualine").setup({
+    require("lualine").setup {
       options = {
         theme = "auto",
         component_separators = "",
         section_separators = { left = "", right = "" },
       },
-      sections = process_sections({
+      sections = process_sections {
         lualine_a = { "mode" },
         lualine_b = {
           "branch",
@@ -117,11 +120,11 @@ return {
         lualine_x = { macro_recording },
         lualine_y = { search_result, "filetype" },
         lualine_z = { "%l:%c", "%p%%/%L" },
-      }),
+      },
       inactive_sections = {
         lualine_c = { "%f %y %m" },
         lualine_x = {},
       },
-    })
+    }
   end,
 }
