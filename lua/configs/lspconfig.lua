@@ -1,7 +1,3 @@
-local lspconfig = require "lspconfig"
-local util = require("lspconfig.util")
-
-require("nvchad.configs.lspconfig").defaults()
 require("mason-tool-installer").setup {
   ensure_installed = {
     "lua-language-server",
@@ -34,27 +30,14 @@ local servers = {
   "jsonls",
   "tailwindcss",
   "lua_ls",
-  "emmet-language-server",
+  "emmet_language_server",
   "ts_ls",
+  "taplo",
 }
 
 for _, lsp in ipairs(servers) do
+  -- print("Enabling config for lsp " .. lsp)
   vim.lsp.enable(lsp)
 end
 
-lspconfig.ts_ls.setup {
-  filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 
-  -- Safe for Neovim 0.12
-  root_dir = util.root_pattern("package.json", "package-lock.json", "tsconfig.json"),
-}
-
-do
-  local default_handler = vim.lsp.handlers.signature_help
-  vim.lsp.handlers["textDocument/signatureHelp"] = function(err, result, ctx, config)
-    config = config or {}
-    config.focusable = false
-    config.border = "rounded"
-    default_handler(err, result, ctx, config)
-  end
-end

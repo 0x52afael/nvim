@@ -4,7 +4,7 @@ local M = {}
 local fortune = require "fortune"
 
 M.base46 = {
-  theme = "github_light",
+  theme = "catppuccin",
 }
 
 M.lspconfig = {

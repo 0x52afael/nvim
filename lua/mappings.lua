@@ -11,10 +11,11 @@ map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 map("n", "<leader>sk", ":Telescope keymaps<cr>", { desc = "Search keymaps" })
 map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Find Project" })
--- map("n", "<leader>fw", "<cmd>telescope egrepify<cr>", { desc = "telescope live grep *improved*" })
 
 map("n", "<leader>fw", function()
-  fzf.live_grep()
+  fzf.live_grep {
+    glob_flag = "!node_modules/** !.git/** !dist/** !package-lock.json",
+  }
 end, { desc = "fzf live grep" })
 
 map("n", "<leader>sn", scretch.new, { desc = "Create new Scratchfile" })
@@ -26,7 +27,8 @@ map("n", "<leader>st", scretch.edit_template, { desc = "Edit Scratchfile" })
 map("n", "<leader>sg", scretch.grep, { desc = "Grep in Scratchfiles" })
 map("n", "<leader>sv", scretch.explore, { desc = "Explore Scratchfiles" })
 map("n", "<leader>sat", scretch.save_as_template, { desc = "Save new Scratchfile" })
-
+map("n", ";", ":FzfLua command_history<cr>", { desc = "Search nvim command history" })
+map("n", "<localleader>TT", ":lua require('base46').toggle_transparency()<cr>", { desc = "Toggle nvim transparency" })
 map(
   "n",
   "<leader>fa",
