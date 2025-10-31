@@ -20,5 +20,14 @@ return {
       vim.cmd.colorscheme 'tokyonight-night'
     end,
   },
+  {
+    'Skardyy/makurai-nvim',
+    lazy = false,
+    config = function()
+      require('makurai').setup {
+        transparent = false, -- removes the bg color
+      }
+    end,
+  },
 }
 -- vim: ts=2 sts=2 sw=2 et
