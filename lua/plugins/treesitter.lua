@@ -1,32 +1,37 @@
 return {
-  'nvim-treesitter/nvim-treesitter',
-  opts = {
-    ensure_installed = {
-      'vim',
-      'lua',
-      'vimdoc',
-      'kotlin',
-      'python',
-      'angular',
-      'javascript',
-      'typescript',
-      'yaml',
-      'json',
-      'bash',
-      'html',
-      'css',
-      'markdown',
-      'markdown_inline',
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    opts = {
+        ensure_installed = {
+            "vim",
+            "lua",
+            "vimdoc",
+            "kotlin",
+            "python",
+            "angular",
+            "javascript",
+            "typescript",
+            "yaml",
+            "json",
+            "bash",
+            "html",
+            "css",
+            "markdown",
+            "markdown_inline",
+            "tsx",
+        },
+        auto_install = true,
+        textobjects = {
+            select = {
+                enable = false,
+            },
+        },
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = false,
+        },
     },
-    auto_install = true,
-    textobjects = {
-      select = {
-        enable = false,
-      },
-    },
-    highlight = {
-      enable = true,
-    },
-  },
+    config = function()
+        vim.treesitter.language.register("tsx", "typescriptreact")
+    end,
 }
--- vim: ts=2 sts=2 sw=2 et
