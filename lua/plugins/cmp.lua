@@ -60,6 +60,8 @@ return {
         ["<Down>"] = { "select_next", "fallback" },
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-n>"] = { "select_next", "fallback" },
+        ["<C-k>"] = { "fallback" },
+
         ["<C-up>"] = { "scroll_documentation_up", "fallback" },
         ["<C-down>"] = { "scroll_documentation_down", "fallback" },
       },
@@ -74,23 +76,21 @@ return {
         default = { "lsp", "path", "snippets", "buffer" },
         providers = {
           lsp = {
-            min_keyword_length = 2, -- Number of characters to trigger porvider
+            min_keyword_length = 1, -- Number of characters to trigger porvider
             score_offset = 100, -- Boost/penalize the score of the items
           },
           path = {
-            min_keyword_length = 25,
+            min_keyword_length = 2,
+            score_offset = 50,
           },
           snippets = {
             preset = "luasnip",
-            min_keyword_length = 50,
-            opts = {
-              search_paths = {
-                "~/.local/share/nvim/lazy/friendly-snippets/snippets/",
-              },
-            },
+            min_keyword_length = 0,
+            score_offset = 70,
           },
           buffer = {
-            min_keyword_length = 20,
+            min_keyword_length = 5,
+            min_keyword_length = 1,
             max_items = 10,
           },
         },
