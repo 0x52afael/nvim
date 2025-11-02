@@ -6,7 +6,7 @@ return {
             "tpope/vim-repeat",
         },
         config = function()
-            require("leap").add_default_mappings()
+            require("leap")
         end,
     },
     {
@@ -25,11 +25,7 @@ return {
                     reindent_linewise = true,
                 },
             })
-            require("mini.files").setup()
             require("mini.bracketed").setup()
-            require("mini.animate").setup()
-            require("mini.git").setup()
-            require("mini.visits").setup()
             require("mini.extra").setup()
             require("mini.clue").setup()
             require("mini.indentscope").setup()
@@ -41,16 +37,6 @@ return {
         opts = {
             hide_target_hack = true,
             cursor_color = "none",
-        },
-        specs = {
-            -- disable mini.animate cursor
-            {
-                "nvim-mini/mini.animate",
-                optional = true,
-                opts = {
-                    cursor = { enable = false },
-                },
-            },
         },
     },
 }

@@ -1,39 +1,44 @@
-require('mason-tool-installer').setup {
-  ensure_installed = {
-    'lua-language-server',
-    'unocss',
-    'html',
-    'bashls',
-    'cssls',
-    'css_variables',
-    'dockerls',
-    'docker_compose_language_service',
-    'cssmodules_ls',
-    'jsonls',
-    'tailwindcss',
-    'lua_ls',
-    'html-lsp',
-    'emmet-language-server',
-    'typescript-language-server',
-  },
-}
+require("mason-tool-installer").setup({
+    ensure_installed = {
+        "lua-language-server",
+        "unocss",
+        "html",
+        "bashls",
+        "cssls",
+        "css_variables",
+        "dockerls",
+        "docker_compose_language_service",
+        "cssmodules_ls",
+        "jsonls",
+        "tailwindcss",
+        "lua_ls",
+        "html-lsp",
+        "emmet-language-server",
+        "typescript-language-server",
+        "stylua",
+    },
+})
 
 local servers = {
-  'unocss',
-  'html',
-  'bashls',
-  'cssls',
-  'css_variables',
-  'dockerls',
-  'docker_compose_language_service',
-  'cssmodules_ls',
-  'jsonls',
-  'tailwindcss',
-  'lua_ls',
-  'emmet_language_server',
-  'ts_ls',
+    "unocss",
+    "bashls",
+    "html",
+    "cssls",
+    "css_variables",
+    "dockerls",
+    "docker_compose_language_service",
+    "cssmodules_ls",
+    "jsonls",
+    "tailwindcss",
+    "lua_ls",
+    "emmet_language_server",
+    "ts_ls",
 }
 
+vim.lsp.config("html", {
+    filetypes = { "typescriptreact", "javascriptreact", "html", "htmlangular" },
+})
+
 for _, lsp in ipairs(servers) do
-  vim.lsp.enable(lsp)
+    vim.lsp.enable(lsp)
 end

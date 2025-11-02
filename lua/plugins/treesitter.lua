@@ -1,7 +1,14 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    lazy = false,
+    build = ":TSUpdate",
+    main = "nvim-treesitter.configs",
     opts = {
+        auto_install = true,
+        highlight = {
+            enable = true,
+            use_languagetree = true,
+            additional_vim_regex_highlighting = false,
+        },
         ensure_installed = {
             "vim",
             "lua",
@@ -20,18 +27,5 @@ return {
             "markdown_inline",
             "tsx",
         },
-        auto_install = true,
-        textobjects = {
-            select = {
-                enable = false,
-            },
-        },
-        highlight = {
-            enable = true,
-            additional_vim_regex_highlighting = false,
-        },
     },
-    config = function()
-        vim.treesitter.language.register("tsx", "typescriptreact")
-    end,
 }

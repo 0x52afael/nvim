@@ -14,3 +14,6 @@ vim.filetype.add({
         ["http"] = "http",
     },
 })
+
+vim.treesitter.language.register("html", "typescriptreact")
+vim.treesitter.language.register('tsx', 'typescriptreact')
