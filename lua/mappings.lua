@@ -9,12 +9,10 @@ map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
-
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
 map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
-
 
 map({ "n", "x" }, "<leader>fm", function()
     require("conform").format({ lsp_fallback = true })
@@ -28,7 +26,7 @@ map("n", "<leader>sk", ":Telescope keymaps<cr>", { desc = "Search keymaps" })
 map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Find Project" })
 
 map("n", "<leader>ff", ":FzfLua files<cr>", { desc = "fzf find files" })
-map("n", "<leader>th", ":FzfLua awesome_colorschemes<cr>", { desc = "fzf ColorScheme picker" })
+map("n", "<leader>th", ":Telescope colorscheme<cr>", { desc = "Telescope ColorScheme Picker" })
 map("n", "<leader>fo", ":FzfLua oldfiles<cr>", { desc = "fzf find visited files" })
 map("n", ";", ":FzfLua command_history<cr>", { desc = "fzf command history" })
 
@@ -210,8 +208,6 @@ end, { desc = "grug-far: Search using @/ register value or visual selection" })
 
 map("n", "<leader>ss", require("fzf-lua").lsp_document_symbols, { desc = "LSP Symbols (current file)" })
 
-map("n", "<leader>r5", ":NvimTreeResize 50<CR>", { desc = "Resize NERDTree to 50" })
-map("n", "<leader>r3", ":NvimTreeResizeu30<CR>", { desc = "Resize NERDTree to 30" })
 map("v", "<leader>rv", "!tac<CR>", { noremap = true, silent = true, desc = "Reverses selected text" })
 
 map("n", "<Tab>", function()

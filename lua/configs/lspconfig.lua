@@ -16,6 +16,8 @@ require("mason-tool-installer").setup({
         "emmet-language-server",
         "typescript-language-server",
         "stylua",
+        "marksman",
+        "markdownlint",
     },
 })
 
@@ -31,9 +33,13 @@ local servers = {
     "jsonls",
     "tailwindcss",
     "lua_ls",
+    "marksman",
     "emmet_language_server",
     "ts_ls",
 }
+vim.lsp.config("marksman", {
+    filetypes = { "md", "markdown", "mdx", "markdown.mdx" },
+})
 
 vim.lsp.config("html", {
     filetypes = { "typescriptreact", "javascriptreact", "html", "htmlangular" },
