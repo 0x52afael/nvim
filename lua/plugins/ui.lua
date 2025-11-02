@@ -37,7 +37,12 @@ return {
             require("dashboard").setup({
                 theme = "hyper",
                 config = {
-                    header = fortune.get_fortune(48),
+                    header = {},
+                    week_header = {
+                        enable = true,
+                        append = fortune.get_fortune(100),
+                    },
+                    footer = { "" },
                     shortcut = {
                         { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
                         {
