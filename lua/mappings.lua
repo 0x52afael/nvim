@@ -1,4 +1,41 @@
 local map = vim.keymap.set
+local default_vim_schemes = {
+    "blue",
+    "lunaperche",
+    "darkblue",
+    "delek",
+    "desert",
+    "elflord",
+    "evening",
+    "industry",
+    "koehler",
+    "morning",
+    "murphy",
+    "pablo",
+    "peachpuff",
+    "ron",
+    "shine",
+    "slate",
+    "torte",
+    "zellner",
+    "unokai",
+    "zaibatsu",
+    "vim",
+    "wildcharm",
+    "sorbet",
+    "retrobox",
+    "quiet",
+    "randomhue",
+    "habamax",
+}
+local function is_default_scheme(name)
+    for _, s in ipairs(default_vim_schemes) do
+        if s == name then
+            return true
+        end
+    end
+    return false
+end
 
 local fzf = require("fzf-lua")
 -- Clear search highlighting when pressing Esc in normal mode
@@ -20,21 +57,82 @@ end, { desc = "general format file" })
 
 -- global lsp mappings
 map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
+
+map("n", "<leader>rn", function()
+    pcall(vim.lsp.buf.rename)
+end, { desc = "rename" })
+map({ "n", "x" }, "<leader>ca", function()
+    pcall(vim.lsp.buf.code_action)
+end, { desc = "[G]oto Code [A]ction" })
+
+map("n", "<leader>ih", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }))
+end, { desc = "Toggle Inlay Hints" })
+
+map("n", "grr", function()
+    pcall(require("telescope.builtin").lsp_references)
+end, { desc = "[G]oto [R]eferences" })
+
+map("n", "gd", function()
+    pcall(require("telescope.builtin").lsp_definitions)
+end, { desc = "[G]oto [D]efinition" })
+
+map("n", "gi", function()
+    pcall(vim.lsp.buf.declaration)
+end, { desc = "[G]oto [D]eclaration" })
+
+map("n", "gW", function()
+    pcall(require("telescope.builtin").lsp_dynamic_workspace_symbols)
+end, { desc = "Open Workspace Symbols" })
+
+map("n", "grt", function()
+    pcall(require("telescope.builtin").lsp_type_definitions)
+end, { desc = "[G]oto [T]ype Definition" })
+
+--
 map("i", "jk", "<ESC>")
 map("i", "kj", "<ESC>")
 map("n", "<leader>sk", ":Telescope keymaps<cr>", { desc = "Search keymaps" })
 map("n", "<leader>fp", "<cmd>Telescope projects<cr>", { desc = "Find Project" })
 
 map("n", "<leader>ff", ":FzfLua files<cr>", { desc = "fzf find files" })
-map("n", "<leader>th", ":Telescope colorscheme<cr>", { desc = "Telescope ColorScheme Picker" })
+
+map("n", "<leader>th", function()
+    local user_themes = {}
+    for _, name in ipairs(vim.fn.getcompletion("", "color")) do
+        if not is_default_scheme(name) then
+            table.insert(user_themes, name)
+        end
+    end
+
+    require("telescope.pickers")
+        .new({}, {
+            prompt_title = "User Colorschemes",
+            finder = require("telescope.finders").new_table({ results = user_themes }),
+            sorter = require("telescope.config").values.generic_sorter({}),
+            previewer = require("telescope.previewers").new_buffer_previewer({
+                define_preview = function(self, entry)
+                    vim.cmd("colorscheme " .. entry.value)
+                end,
+            }),
+            attach_mappings = function(_, _map)
+                local actions = require("telescope.actions")
+                _map("i", "<CR>", function(prompt_bufnr)
+                    local selection = require("telescope.actions.state").get_selected_entry()
+                    actions.close(prompt_bufnr)
+                    vim.cmd("colorscheme " .. selection.value)
+                end)
+                return true
+            end,
+        })
+        :find()
+end, { desc = "Pick custom colorscheme" })
+
 map("n", "<leader>fo", ":FzfLua oldfiles<cr>", { desc = "fzf find visited files" })
 map("n", ";", ":FzfLua command_history<cr>", { desc = "fzf command history" })
-
-map("n", "<leader>fw", function()
-    fzf.live_grep()
-end, { desc = "fzf live grep" })
-
-
+map("n", "<leader>fw", ":Telescope egrepify<cr>", { desc = "Live grep in current project" })
+map("n", "<leader>fg", ":FzfLua grep_project<cr>", { desc = "Live grep in current project (Fzf)" })
 
 map(
     "n",
@@ -70,7 +168,6 @@ map("n", "<M-k>", function()
         vim.cmd("cprev")
     end
 end, { noremap = true, silent = true, desc = "Next quickfix list or loclist" })
-
 
 map("n", "<leader>gq", ":q<CR>", { desc = "Close current buffer" })
 
@@ -178,7 +275,6 @@ map(
     { noremap = true, desc = "Reload debugger UI" }
 )
 
-
 map("n", "gx", function()
     local word = vim.fn.expand("<cWORD>")
     if not word:match("^https?://") then
@@ -216,5 +312,13 @@ end)
 map("n", "<S-Tab>", function()
     require("barbar.api").goto_buffer_relative(-1)
 end)
+
+map("n", "<leader>ld", function()
+    if vim.o.background == "light" then
+        vim.o.background = "dark"
+    else
+        vim.o.background = "light"
+    end
+end, { desc = "Toggle the background from dark to light or vice versa." })
 
 map("n", "<leader>x", ":BufferClose<CR>")

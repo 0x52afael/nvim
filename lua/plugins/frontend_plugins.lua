@@ -1,7 +1,7 @@
 return {
   {
     'olrtg/nvim-emmet',
-    ft = { 'html', 'htmlangular' },
+    ft = { 'html', 'htmlangular',"typescriptreact","javascriptreact" },
     config = function()
       vim.keymap.set({ 'n', 'v' }, '<C-y>', require('nvim-emmet').wrap_with_abbreviation)
     end,

@@ -74,7 +74,9 @@ return {
             snippets = { preset = "luasnip" },
             cmdline = { enabled = true },
             completion = {
-
+                trigger = {
+                    show_on_blocked_trigger_characters = { " ", "\n", "\t","}","{",")","(" },
+                },
                 accept = { auto_brackets = { enabled = true } },
                 documentation = {
                     auto_show = true,
@@ -82,7 +84,7 @@ return {
                     window = {
                         direction_priority = {
                             menu_north = { "e", "w", "n", "s" },
-                            menu_south = { "e", "w", "s", "n" },
+                            menu_south = { "w", "e", "s", "n" },
                         },
                     },
                 },
@@ -124,14 +126,14 @@ return {
                     },
                     path = {
                         min_keyword_length = 0,
-                        score_offset = 45,
+                        score_offset = 50,
                     },
                     snippets = {
                         min_keyword_length = 0,
-                        score_offset = 75,
+                        score_offset = 90,
                     },
                     buffer = {
-                        min_keyword_length = 5,
+                        min_keyword_length = 3,
                         score_offset = 20,
                         max_items = 10,
                     },

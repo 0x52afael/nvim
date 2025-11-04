@@ -72,6 +72,14 @@ return {
         dependencies = { { "nvim-tree/nvim-web-devicons" } },
     },
     {
+        "dgagn/diagflow.nvim",
+        event = "LspAttach",
+        opts = {
+            show_borders = true,
+            padding_right = 10,
+        },
+    },
+    {
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
         opts = {},

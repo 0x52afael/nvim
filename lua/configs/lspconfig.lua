@@ -10,6 +10,9 @@ require("mason-tool-installer").setup({
         "docker_compose_language_service",
         "cssmodules_ls",
         "jsonls",
+        "debugpy",
+        "basedpyright",
+        "ruff",
         "tailwindcss",
         "lua_ls",
         "html-lsp",
@@ -24,6 +27,7 @@ require("mason-tool-installer").setup({
 local servers = {
     "unocss",
     "bashls",
+    "basedpyright",
     "html",
     "cssls",
     "css_variables",
